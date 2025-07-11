@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -7,6 +8,17 @@ public class MenuController : MonoBehaviour
     public string playSceneName = "SampleScene";
     public GameObject settingsPanel;
     public GameObject creditPanel;
+    public Toggle musicToggle;
+    public Toggle audioEffectToggle;
+
+    private void Start()
+    {
+        // Load trạng thái đã lưu khi mở Setting
+        if (musicToggle != null)
+            musicToggle.isOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
+        if (audioEffectToggle != null)
+            audioEffectToggle.isOn = PlayerPrefs.GetInt("AudioEffectOn", 1) == 1;
+    }
 
     // Hàm gọi khi nhấn nút Play
     public void OnPlayButton()
@@ -42,6 +54,24 @@ public class MenuController : MonoBehaviour
             creditPanel.SetActive(true);
     }
 
+    // Hàm lưu cài đặt khi nhấn Save
+    public void OnSaveSetting()
+    {
+        if (musicToggle != null)
+            PlayerPrefs.SetInt("MusicOn", musicToggle.isOn ? 1 : 0);
+        if (audioEffectToggle != null)
+            PlayerPrefs.SetInt("AudioEffectOn", audioEffectToggle.isOn ? 1 : 0);
+        PlayerPrefs.Save();
+        Debug.Log("Settings saved!");
+    }
+
+    // Hàm thoát Setting (có thể dùng cho nút Exit hoặc Back)
+    public void OnExitSetting()
+    {
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
+    }
+
     // Hàm đóng panel Setting
     public void OnCloseSetting()
     {
@@ -55,4 +85,4 @@ public class MenuController : MonoBehaviour
         if (creditPanel != null)
             creditPanel.SetActive(false);
     }
-} 
+}
