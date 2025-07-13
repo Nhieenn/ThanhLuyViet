@@ -416,6 +416,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ui_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2686382908531743393, guid: d23a7ae4c690fff4794084649692c242, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -82.79999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686382908531743393, guid: d23a7ae4c690fff4794084649692c242, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -76.399994
+      objectReference: {fileID: 0}
     - target: {fileID: 4898900583771237755, guid: d23a7ae4c690fff4794084649692c242, type: 3}
       propertyPath: m_Camera
       value: 
