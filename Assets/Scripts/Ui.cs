@@ -10,35 +10,38 @@ public class Ui : MonoBehaviour
 
     [Header("Pause Game")]
     [SerializeField] private Toggle PauseGame;
+    [SerializeField] private Image isPressed_Pause;
 
     void Start()
     {
         //================= SETTING =====================
         Setting.onValueChanged.AddListener(OnSettingToggleChanged);
         Setting_Panel.SetActive(Setting.isOn);
-        Time.timeScale = Setting.isOn ? 0 : 1;
 
         //================= PAUSE GAME =====================
         PauseGame.onValueChanged.AddListener(OnPauseToggleChanged);
+
+        // Khởi tạo Time.timeScale phù hợp
+        Time.timeScale = (Setting.isOn || PauseGame.isOn) ? 0 : 1;
     }
+
     private void OnSettingToggleChanged(bool isOn)
     {
         Setting_Panel.SetActive(isOn);
-        Time.timeScale = isOn ? 0 : 1;
 
-        // Đảm bảo không bị xung đột nếu Setting mở -> Pause phải tắt
-        if (isOn && PauseGame.isOn)
-        {
-            PauseGame.isOn = false;
-        }
+        // Nếu đang bật Setting hoặc PauseGame thì dừng game
+        Time.timeScale = (isOn || PauseGame.isOn) ? 0 : 1;
     }
 
     private void OnPauseToggleChanged(bool isOn)
     {
-        if (!Setting.isOn) // chỉ pause nếu Setting đang tắt
-        {
-            Time.timeScale = isOn ? 0 : 1;
-        }
+        // Cập nhật alpha màu
+        Color c = isPressed_Pause.color;
+        c.a = isOn ? 0.5f : 1f;
+        isPressed_Pause.color = c;
+
+        // Nếu đang bật Pause hoặc Setting thì dừng game
+        Time.timeScale = (isOn || Setting.isOn) ? 0 : 1;
     }
 
     //================= BUTTON FUNCTION =====================
@@ -52,15 +55,23 @@ public class Ui : MonoBehaviour
 
     public void ContinueGame()
     {
-        Setting.isOn = false; // tự động gọi lại OnSettingToggleChanged
-        PauseGame.isOn = false; // bỏ pause nếu đang pause
+        Setting.isOn = false;
+        PauseGame.isOn = false;
+
+        Time.timeScale = 1;
+
+        // Reset màu nút pause
+        Color c = isPressed_Pause.color;
+        c.a = 1f;
+        isPressed_Pause.color = c;
+
         Debug.Log("Continue");
     }
 
     public void Menu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0); // Menu là scene 0
+        SceneManager.LoadScene(0);
         Debug.Log("Menu");
     }
 
