@@ -4,13 +4,15 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
+    public GameObject menuPanel;
+    public GameObject levelSelectPanel;
     // Gán tên scene chơi game ở đây hoặc qua Inspector
     public string playSceneName = "SampleScene";
     public GameObject settingsPanel;
     public GameObject creditPanel;
     public Toggle musicToggle;
     public Toggle audioEffectToggle;
-
+    public GameObject gameMenu;
     private void Start()
     {
         // Load trạng thái đã lưu khi mở Setting
@@ -23,7 +25,10 @@ public class MenuController : MonoBehaviour
     // Hàm gọi khi nhấn nút Play
     public void OnPlayButton()
     {
-        SceneManager.LoadScene(playSceneName);
+        //SceneManager.LoadScene(playSceneName);
+        menuPanel.SetActive(false);
+        gameMenu.SetActive(false);
+        levelSelectPanel.SetActive(true);
     }
 
     // Hàm gọi khi nhấn nút Continue
@@ -84,5 +89,21 @@ public class MenuController : MonoBehaviour
     {
         if (creditPanel != null)
             creditPanel.SetActive(false);
+    }
+
+
+     //Gọi hàm này khi nhấn nút Play
+    //public void OnnBackPlayButton()
+    //{
+    //    menuPanel.SetActive(false);
+    //    levelSelectPanel.SetActive(true);
+    //}
+
+    // Gọi hàm này khi nhấn nút Back
+    public void OnBackButton()
+    {
+        levelSelectPanel.SetActive(true);
+        menuPanel.SetActive(false);
+        gameMenu.SetActive(true);
     }
 }
