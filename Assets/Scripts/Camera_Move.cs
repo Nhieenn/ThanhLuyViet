@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Camera_Y : MonoBehaviour
+public class Camera_move : MonoBehaviour
 {
     [Header("========== LIMITS ==========")]
     public float minX = -10f;
@@ -32,6 +32,8 @@ public class Camera_Y : MonoBehaviour
 
     void HandleMouseDrag()
     {
+        if (Time.timeScale == 0) return; // Ngăn di chuyển khi game pause
+
         if (Input.GetMouseButtonDown(0))
         {
             dragOrigin = Input.mousePosition;
@@ -64,6 +66,8 @@ public class Camera_Y : MonoBehaviour
 
     void HandleTouchDrag()
     {
+        if (Time.timeScale == 0) return; // Ngăn di chuyển khi game pause
+
         if (Input.touchCount == 1)
         {
             Touch touch = Input.GetTouch(0);
