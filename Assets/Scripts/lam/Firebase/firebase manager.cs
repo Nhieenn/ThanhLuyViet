@@ -81,7 +81,7 @@ public class firebasemanager : MonoBehaviour
         if (user != null)
         {
             References.userName = user.DisplayName;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+            UIManager.Instance.OpenGamePanel();
         }
         else
         {
@@ -98,6 +98,8 @@ public class firebasemanager : MonoBehaviour
             if (!signedIn && user != null)
             {
                 Debug.Log("Signed out " + user.UserId);
+                UIManager.Instance.OpenLoginPanel();
+                ClearLogininputFieldText();
             }
 
             user = auth.CurrentUser;
@@ -108,6 +110,21 @@ public class firebasemanager : MonoBehaviour
             }
         }
     }
+
+    private void ClearLogininputFieldText()
+    {
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+    }
+
+    public void Logout()
+    {
+        if (auth != null && user != null)
+        {
+            auth.SignOut();
+        }
+    }
+
 
     public void Login()
     {
@@ -158,7 +175,7 @@ public class firebasemanager : MonoBehaviour
             Debug.LogFormat("{0} You Are Successfully Logged In", user.DisplayName);
 
             References.userName = user.DisplayName;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+            UIManager.Instance.OpenGamePanel();
         }
     }
 
@@ -268,5 +285,10 @@ public class firebasemanager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OpenGameScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 }
