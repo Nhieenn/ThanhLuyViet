@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject registrationPanel;
 
+    [SerializeField]
+    private GameObject gamepanel;
+
     private void Awake()
     {
         CreateInstance();
@@ -19,7 +22,7 @@ public class UIManager : MonoBehaviour
 
     private void CreateInstance()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -29,11 +32,20 @@ public class UIManager : MonoBehaviour
     {
         loginPanel.SetActive(true);
         registrationPanel.SetActive(false);
+        gamepanel.SetActive(false);
     }
 
     public void OpenRegistrationPanel()
     {
         registrationPanel.SetActive(true);
         loginPanel.SetActive(false);
+        gamepanel.SetActive(false);
+    }
+
+    public void OpenGamePanel()
+    {
+        gamepanel.SetActive(true);
+        loginPanel.SetActive(false);
+        registrationPanel.SetActive(false);
     }
 }

@@ -26,22 +26,29 @@ public class firebasemanager : MonoBehaviour
     public InputField passwordRegisterField;
     public InputField confirmPasswordRegisterField;
 
-    private void Awake()
+    private void Start()
     {
-        // Check that all of the necessary dependencies for firebase are present on the system
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
-        {
-            dependencyStatus = task.Result;
+        StartCoroutine(CheckAndFixDependenciesAsync());
+    }
 
-            if (dependencyStatus == DependencyStatus.Available)
-            {
-                InitializeFirebase();
-            }
-            else
-            {
-                Debug.LogError("Could not resolve all firebase dependencies: " + dependencyStatus);
-            }
-        });
+    private IEnumerator CheckAndFixDependenciesAsync()
+    {
+        var dependecyTask = FirebaseApp.CheckAndFixDependenciesAsync();
+
+        yield return new WaitUntil(() => dependecyTask.IsCompleted);
+
+        dependencyStatus = dependecyTask.Result;
+
+        if (dependencyStatus == DependencyStatus.Available)
+        {
+            InitializeFirebase();
+            yield return new WaitForEndOfFrame(); 
+            StartCoroutine(CheckForAutoLogin());
+        }
+        else
+        {
+            Debug.LogError("Could not resolve all firebase dependencies: " + dependencyStatus);
+        }
     }
 
     void InitializeFirebase()
@@ -53,7 +60,35 @@ public class firebasemanager : MonoBehaviour
         AuthStateChanged(this, null);
     }
 
-    // Track state changes of the auth object.
+    private IEnumerator CheckForAutoLogin()
+    {
+        if (user != null)
+        {
+            var reloadUserTask = user.ReloadAsync();
+
+            yield return new WaitUntil(() => reloadUserTask.IsCompleted);
+
+            AutoLogin();
+        }
+        else
+        {
+            UIManager.Instance.OpenLoginPanel();
+        }
+    }
+
+    private void AutoLogin()
+    {
+        if (user != null)
+        {
+            References.userName = user.DisplayName;
+            UIManager.Instance.OpenGamePanel();
+        }
+        else
+        {
+            UIManager.Instance.OpenLoginPanel();
+        }
+    }
+
     void AuthStateChanged(object sender, System.EventArgs eventArgs)
     {
         if (auth.CurrentUser != user)
@@ -63,6 +98,8 @@ public class firebasemanager : MonoBehaviour
             if (!signedIn && user != null)
             {
                 Debug.Log("Signed out " + user.UserId);
+                UIManager.Instance.OpenLoginPanel();
+                ClearLogininputFieldText();
             }
 
             user = auth.CurrentUser;
@@ -73,6 +110,21 @@ public class firebasemanager : MonoBehaviour
             }
         }
     }
+
+    private void ClearLogininputFieldText()
+    {
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+    }
+
+    public void Logout()
+    {
+        if (auth != null && user != null)
+        {
+            auth.SignOut();
+        }
+    }
+
 
     public void Login()
     {
@@ -123,7 +175,7 @@ public class firebasemanager : MonoBehaviour
             Debug.LogFormat("{0} You Are Successfully Logged In", user.DisplayName);
 
             References.userName = user.DisplayName;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+            UIManager.Instance.OpenGamePanel();
         }
     }
 
@@ -233,5 +285,10 @@ public class firebasemanager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OpenGameScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 }
