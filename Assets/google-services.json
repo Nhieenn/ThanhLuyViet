@@ -1,0 +1,49 @@
+{
+    "project_info": {
+        "firebase_url": "null",
+        "project_number": "214919832817",
+        "project_id": "thanhluyviet",
+        "storage_bucket": "thanhluyviet.firebasestorage.app"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:214919832817:android:215cb0f138232dd20b3550",
+                "android_client_info": {
+                    "package_name": "com.DefaultCompany.com.unity.template.mobile2D"
+                }
+            },
+            "oauth_client": [],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyCS66MfzV6ZRGrkByxCuAv3tfCRrAYQw_8"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": []
+                }
+            }
+        },
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:214919832817:android:dfbad99812805a4f0b3550",
+                "android_client_info": {
+                    "package_name": "com.thanhluyviet.firebaseDB"
+                }
+            },
+            "oauth_client": [],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyCS66MfzV6ZRGrkByxCuAv3tfCRrAYQw_8"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": []
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}
