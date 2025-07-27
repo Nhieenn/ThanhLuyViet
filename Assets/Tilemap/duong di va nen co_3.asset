@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: duong di va nen co_3
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1349913573, guid: 493eed4316a290a49a06ae1499d856ba, type: 3}
+  m_Sprite: {fileID: 1330566770, guid: f1e25b75b01d2394fb6a1dbcb97e69df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
