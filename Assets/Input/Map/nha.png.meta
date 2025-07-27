@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81bdeec67c6b65e43ac02359761ee3e8
+guid: 8466a41e5ee319a4aaf2e7ecbd6e0a20
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8718597971528803479
-    second: nha tao quai_0
+      213: 2414678016120438916
+    second: nha_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nha tao quai_0
+      name: nha_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 67
-        height: 37
+        width: 1891
+        height: 1040
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 96b95978651510780800000000000000
-      internalID: -8718597971528803479
+      spriteID: 480cdc5bcd8a28120800000000000000
+      internalID: 2414678016120438916
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      nha tao quai_0: -8718597971528803479
+      nha_0: 2414678016120438916
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
