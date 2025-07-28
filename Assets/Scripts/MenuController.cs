@@ -264,4 +264,9 @@ public class MenuController : MonoBehaviour
         else
             Debug.LogWarning("gameMenu is null!");
     }
+
+    public void loginButton()
+    {
+      
+    }
 } 
