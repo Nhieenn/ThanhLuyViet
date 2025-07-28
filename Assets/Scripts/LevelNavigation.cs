@@ -21,7 +21,7 @@ public class LevelNavigation : MonoBehaviour
         SetupBackButton();
     }
     
-    void SetupLevelButtons()
+    public void SetupLevelButtons()
     {
         // Tự động tìm level buttons nếu chưa gán
         if (levelButtons == null || levelButtons.Length == 0)
@@ -48,7 +48,7 @@ public class LevelNavigation : MonoBehaviour
         }
     }
     
-    void SetupBackButton()
+    public void SetupBackButton()
     {
         // Tự động tìm back button nếu chưa gán
         if (backButton == null)

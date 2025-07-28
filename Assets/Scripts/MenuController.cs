@@ -13,6 +13,7 @@ public class MenuController : MonoBehaviour
     public Toggle musicToggle;
     public Toggle audioEffectToggle;
     public GameObject gameMenu;
+    public GameObject menu;
     
     
     private void Start()
@@ -141,29 +142,39 @@ public class MenuController : MonoBehaviour
         return null;
     }
 
+    
+
     // Hàm gọi khi nhấn nút Play
+    public void backtomenu()
+    {
+        levelSelectPanel.active = false;
+        menu.active = true;
+    }    
+
     public void OnPlayButton()
     {
-        
-        // Kiểm tra null trước khi sử dụng
-        if (menuPanel != null)
-            menuPanel.SetActive(false);
-        else
-            Debug.LogWarning("menuPanel is null!");
+        levelSelectPanel.active = true;
+        menu.active = false;
+
+        //// Kiểm tra null trước khi sử dụng
+        //if (menuPanel != null)
+        //    menuPanel.SetActive(false);
+        //else
+        //    Debug.LogWarning("menuPanel is null!");
             
-        if (gameMenu != null)
-            gameMenu.SetActive(false);
-        else
-            Debug.LogWarning("gameMenu is null!");
+        //if (gameMenu != null)
+        //    gameMenu.SetActive(false);
+        //else
+        //    Debug.LogWarning("gameMenu is null!");
             
-        if (levelSelectPanel != null)
-            levelSelectPanel.SetActive(true);
-        else
-            Debug.LogWarning("levelSelectPanel is null!");
+        //if (levelSelectPanel != null)
+        //    levelSelectPanel.SetActive(true);
+        //else
+        //    Debug.LogWarning("levelSelectPanel is null!");
         
         
-        // Không load scene ngay, để người dùng chọn màn
-        Debug.Log("Showing level select panel");
+        //// Không load scene ngay, để người dùng chọn màn
+        //Debug.Log("Showing level select panel");
     }
 
     // Hàm gọi khi nhấn nút Continue
@@ -253,4 +264,4 @@ public class MenuController : MonoBehaviour
         else
             Debug.LogWarning("gameMenu is null!");
     }
-}
+} 
