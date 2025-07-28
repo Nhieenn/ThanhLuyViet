@@ -3,6 +3,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public GameObject actionMenuPrefab;
+    public GameObject buildAreaPrefab; // Thêm trường này
     private GameObject currentMenuInstance;
 
     void OnMouseDown()
@@ -38,6 +39,11 @@ public class Tower : MonoBehaviour
     public void DestroyTowerWithoutMenu()
     {
         Debug.Log("Destroy tower!");
+        
+        // Spawn lại vùng build tại vị trí tháp
+        GameObject buildArea = Instantiate(buildAreaPrefab, transform.position, Quaternion.identity);
+        
+        // Xóa tháp
         Destroy(gameObject);
     }
 } 
