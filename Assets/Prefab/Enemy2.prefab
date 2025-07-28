@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionMenuPrefab: {fileID: 3692692577780957172, guid: 815cc5841ec581f46be33cdbe9a04d43, type: 3}
+  buildAreaPrefab: {fileID: 4039511044469297145, guid: 95dedee4ef50b504db24db2a3e4c3464, type: 3}
 --- !u!61 &-5885669017867991053
 BoxCollider2D:
   m_ObjectHideFlags: 0
