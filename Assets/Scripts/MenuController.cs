@@ -267,6 +267,6 @@ public class MenuController : MonoBehaviour
 
     public void loginButton()
     {
-      
+        SceneManager.LoadScene(3);
     }
 } 
