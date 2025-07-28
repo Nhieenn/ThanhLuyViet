@@ -3763,7 +3763,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035794216}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4268,7 +4268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1099840457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4408,7 +4408,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137655803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4888,7 +4888,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1241158829}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6788,19 +6788,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1970978742}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2137469113}
-        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
-        m_MethodName: OnBackButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1970978742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7300,7 +7288,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129172211}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7371,14 +7359,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129172211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6bdfd193d6f15048b9a179266471079, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a53f95b99e60a845bdcd83e438d69c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 5
-  rows: 2
-  buttonSpacing: 10
-  buttonPrefab: {fileID: 1970978739}
-  gridContainer: {fileID: 0}
   levelSceneNames:
   - LV1
   - LV2
@@ -7390,9 +7373,10 @@ MonoBehaviour:
   - LV8
   - Lv9
   - Lv10
-  unlockedColor: {r: 1, g: 1, b: 1, a: 1}
-  lockedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  maxUnlockedLevel: 10
+  levelButtons: []
+  backButton: {fileID: 1970978741}
+  levelSelectPanel: {fileID: 2129172211}
+  menuPanel: {fileID: 2137469108}
 --- !u!1 &2132258429
 GameObject:
   m_ObjectHideFlags: 0
@@ -7542,6 +7526,7 @@ GameObject:
   - component: {fileID: 2137469110}
   - component: {fileID: 2137469109}
   - component: {fileID: 2137469113}
+  - component: {fileID: 2137469114}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -7624,6 +7609,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 169804605}
+  - {fileID: 1099840457}
+  - {fileID: 247958883}
+  - {fileID: 842348914}
   - {fileID: 2109234621}
   - {fileID: 1035794217}
   - {fileID: 1137655804}
@@ -7632,10 +7621,6 @@ RectTransform:
   - {fileID: 264482783}
   - {fileID: 1048751202}
   - {fileID: 1515161267}
-  - {fileID: 169804605}
-  - {fileID: 1099840457}
-  - {fileID: 247958883}
-  - {fileID: 842348914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7663,6 +7648,20 @@ MonoBehaviour:
   musicToggle: {fileID: 749538376}
   audioEffectToggle: {fileID: 1558550457}
   gameMenu: {fileID: 0}
+--- !u!114 &2137469114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137469108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca4a704b42ed954489d7bf5e66a1d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menupanel: {fileID: 0}
+  settingpanel: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
