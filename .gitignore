@@ -99,6 +99,10 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
+# Ignore large Firebase plugin files that exceed GitHub's limit
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_10_1.bundle
+Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_10_1.so
+
 # Ignore large .bundle and .so files in specific Firebase plugin folder
 Assets/Firebase/Plugins/x86_64/*.bundle
 Assets/Firebase/Plugins/x86_64/*.so
