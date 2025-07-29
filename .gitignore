@@ -89,7 +89,7 @@ InitTestScene*.unity*
 # files in platform-specific subfolders, for example:
 # /Assets/AddressableAssetsData/OSX/addressables_content_state.bin
 /[Aa]ssets/AddressableAssetsData/*/*.bin*
-/Assets/Firebase/
+
 # Visual Scripting auto-generated files
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
@@ -99,10 +99,57 @@ InitTestScene*.unity*
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
 
-# Ignore large Firebase plugin files that exceed GitHub's limit
-Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_10_1.bundle
-Assets/Firebase/Plugins/x86_64/FirebaseCppApp-12_10_1.so
+# ========== FIREBASE IGNORE RULES ==========
+# Ignore entire Firebase folder and all its contents
+/[Aa]ssets/[Ff]irebase/
+/[Aa]ssets/[Ff]irebase.meta
 
-# Ignore large .bundle and .so files in specific Firebase plugin folder
-Assets/Firebase/Plugins/x86_64/*.bundle
-Assets/Firebase/Plugins/x86_64/*.so
+# Ignore Firebase specific files and folders
+/[Aa]ssets/[Ff]irebase/[Ee]ditor/
+/[Aa]ssets/[Ff]irebase/[Pp]lugins/
+/[Aa]ssets/[Ff]irebase/[Mm]2repository/
+
+# Ignore Firebase DLLs and PDBs
+*.Firebase.*.dll
+*.Firebase.*.pdb
+*.Firebase.*.dll.meta
+*.Firebase.*.pdb.meta
+
+# Ignore Firebase executable files
+generate_xml_from_google_services_json.exe
+network_request.exe
+*.exe.meta
+
+# Ignore Firebase Python scripts
+generate_xml_from_google_services_json.py
+network_request.py
+*.py.meta
+
+# Ignore Firebase XML files
+*Dependencies.xml
+*Dependencies.xml.meta
+
+# Ignore Firebase manifest files
+*manifest.txt
+*manifest.txt.meta
+
+# Ignore Firebase large binary files
+*.bundle
+*.so
+*.dylib
+*.a
+
+# Ignore Firebase specific folders in Plugins
+/[Aa]ssets/[Ff]irebase/[Pp]lugins/[Ii][Oo][Ss]/
+/[Aa]ssets/[Ff]irebase/[Pp]lugins/[Xx]86_64/
+/[Aa]ssets/[Ff]irebase/[Pp]lugins/[Aa]ndroid/
+
+# Ignore Google services configuration files (if any)
+google-services.json
+GoogleService-Info.plist
+google-services.json.meta
+GoogleService-Info.plist.meta
+
+# Ignore any Firebase related temporary files
+*firebase*
+*Firebase*
