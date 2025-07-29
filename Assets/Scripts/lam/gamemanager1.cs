@@ -19,7 +19,7 @@ public class gamemanager1 : MonoBehaviour
         else
         {
             // Tìm Text component trong scene
-            welcomeText = FindObjectOfType<Text>();
+            welcomeText = FindAnyObjectByType<Text>();
             if (welcomeText != null)
             {
                 ShowWelcomeMessage();

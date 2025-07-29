@@ -22,7 +22,7 @@ public class LevelSelectUI : MonoBehaviour
 
     void Start()
     {
-        menuController = FindObjectOfType<MenuController>();
+        menuController = FindAnyObjectByType<MenuController>();
         CreateLevelButtons();
         SetupBackButton();
     }
@@ -133,7 +133,7 @@ public class LevelSelectUI : MonoBehaviour
     {
         if (menuController != null)
         {
-            menuController.OnBackButton();
+            menuController.OnExitSetting();
         }
         else
         {
