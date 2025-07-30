@@ -27,8 +27,8 @@ public class LevelSelectPanelCreator : MonoBehaviour
 
     void Start()
     {
-        canvas = FindObjectOfType<Canvas>();
-        menuController = FindObjectOfType<MenuController>();
+        canvas = FindAnyObjectByType<Canvas>();
+        menuController = FindAnyObjectByType<MenuController>();
         
         if (canvas == null)
         {
@@ -233,7 +233,7 @@ public class LevelSelectPanelCreator : MonoBehaviour
     {
         if (menuController != null)
         {
-            menuController.OnBackButton();
+            menuController.OnExitSetting();
         }
         else
         {

@@ -44,7 +44,7 @@ public class LevelSelectController : MonoBehaviour
     {
         if (menuController != null)
         {
-            menuController.OnBackButton();
+            menuController.OnExitSetting();
         }
         else
         {

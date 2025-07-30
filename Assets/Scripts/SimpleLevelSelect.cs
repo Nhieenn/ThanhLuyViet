@@ -42,8 +42,8 @@ public class SimpleLevelSelect : MonoBehaviour
     public void CreateLevelSelectPanel()
     {
         // Tìm Canvas và MenuController
-        Canvas canvas = FindObjectOfType<Canvas>();
-        menuController = FindObjectOfType<MenuController>();
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        menuController = FindAnyObjectByType<MenuController>();
         
         if (canvas == null)
         {
@@ -257,7 +257,7 @@ public class SimpleLevelSelect : MonoBehaviour
             Debug.Log($"Attempting to load level: {sceneName}");
             
             // Sử dụng SceneBuildManager nếu có
-            SceneBuildManager buildManager = FindObjectOfType<SceneBuildManager>();
+            SceneBuildManager buildManager = FindAnyObjectByType<SceneBuildManager>();
             if (buildManager != null)
             {
                 buildManager.LoadScene(sceneName);
@@ -286,7 +286,7 @@ public class SimpleLevelSelect : MonoBehaviour
     {
         if (menuController != null)
         {
-            menuController.OnBackButton();
+            menuController.OnExitSetting();
         }
         else
         {
