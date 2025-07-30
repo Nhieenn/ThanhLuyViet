@@ -13,8 +13,10 @@ public class Camera_move : MonoBehaviour
 
     private Vector3 dragOrigin;
     private bool isDragging;
-
     private float fixedZ;
+
+    // Static variable để kiểm soát camera movement từ bên ngoài
+    public static bool canMoveCamera = true;
 
     void Start()
     {
@@ -32,7 +34,7 @@ public class Camera_move : MonoBehaviour
 
     void HandleMouseDrag()
     {
-        if (Time.timeScale == 0) return; // Ngăn di chuyển khi game pause
+        if (Time.timeScale == 0 || !canMoveCamera) return; // Ngăn di chuyển khi game pause hoặc menu đang mở
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -66,7 +68,7 @@ public class Camera_move : MonoBehaviour
 
     void HandleTouchDrag()
     {
-        if (Time.timeScale == 0) return; // Ngăn di chuyển khi game pause
+        if (Time.timeScale == 0 || !canMoveCamera) return; // Ngăn di chuyển khi game pause hoặc menu đang mở
 
         if (Input.touchCount == 1)
         {
@@ -101,5 +103,17 @@ public class Camera_move : MonoBehaviour
                 isDragging = false;
             }
         }
+    }
+
+    // Phương thức public để tạm dừng camera movement
+    public static void DisableCameraMovement()
+    {
+        canMoveCamera = false;
+    }
+
+    // Phương thức public để bật lại camera movement
+    public static void EnableCameraMovement()
+    {
+        canMoveCamera = true;
     }
 }
