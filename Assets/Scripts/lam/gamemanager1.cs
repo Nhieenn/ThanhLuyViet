@@ -11,12 +11,33 @@ public class gamemanager1 : MonoBehaviour
 
     void Start()
     {
-        ShowWelcomeMessage();
+        // Chỉ hiển thị message nếu có Text component
+        if (welcomeText != null)
+        {
+            ShowWelcomeMessage();
+        }
+        else
+        {
+            // Tìm Text component trong scene
+            welcomeText = FindObjectOfType<Text>();
+            if (welcomeText != null)
+            {
+                ShowWelcomeMessage();
+            }
+            else
+            {
+                // Nếu không có Text, chỉ log message
+                Debug.Log($"Welcome {References.userName} to our game");
+            }
+        }
     }
 
     private void ShowWelcomeMessage()
     {
-        welcomeText.text = $"Welcome {References.userName} to our game";
+        if (welcomeText != null)
+        {
+            welcomeText.text = $"Welcome {References.userName} to our game";
+        }
     }
 
     public void gotodangnhap()
