@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Play Scene.unity
     guid: be507e446f72bb340988ad26b51aa25e
+  - enabled: 1
+    path: Assets/Scenes/FirebaseLogin.unity
+    guid: 07020c8fc917ce448bfb264687aa7ede
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 811834017db35a547a4f48ed650a65f8, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

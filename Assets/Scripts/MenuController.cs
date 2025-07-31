@@ -10,6 +10,8 @@ public class MenuController : MonoBehaviour
     public GameObject creditPanel;
     public Toggle musicToggle;
     public Toggle audioEffectToggle;
+    public GameObject menulevel;
+    public GameObject mainMenuPanel; // Thêm dòng này ở đầu
 
     private void Start()
     {
@@ -22,12 +24,21 @@ public class MenuController : MonoBehaviour
 
     // Hàm gọi khi nhấn nút Play
     public void OnPlayButton()
-    {
-        SceneManager.LoadScene(playSceneName);
-    }
+    {// Hàm gọi khi nhấn nút Play
+    
+    
+        if (mainMenuPanel != null)
+            mainMenuPanel.SetActive(false);     // Ẩn menu chính
 
-    // Hàm gọi khi nhấn nút Continue
-    public void OnContinueButton()
+        if (menulevel != null)
+            menulevel.SetActive(true);          // Hiện menu chọn level
+    
+
+
+}
+
+// Hàm gọi khi nhấn nút Continue
+public void OnContinueButton()
     {
         // Thêm logic load game hoặc resume game ở đây
         Debug.Log("Continue game");
@@ -84,5 +95,20 @@ public class MenuController : MonoBehaviour
     {
         if (creditPanel != null)
             creditPanel.SetActive(false);
+    }
+
+    public void OnBackFromLevelSelect()
+    {
+        if (menulevel != null)
+            menulevel.SetActive(false);       // Ẩn menu chọn level
+
+        if (mainMenuPanel != null)
+            mainMenuPanel.SetActive(true);    // Hiện lại menu chính
+    }
+    public void OnLoginBitton() 
+    {
+        SceneManager.LoadScene("FirebaseLogin");
+
+
     }
 }
