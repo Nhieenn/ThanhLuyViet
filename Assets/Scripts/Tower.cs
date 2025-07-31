@@ -3,8 +3,15 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public GameObject actionMenuPrefab;
-    public GameObject buildAreaPrefab; // Thêm trường này
+    public GameObject buildAreaPrefab;
+    public TowerData towerData; // Thêm trường này
+    
     private GameObject currentMenuInstance;
+    private int currentLevel = 0; // Level bắt đầu từ 0
+    private SpriteRenderer spriteRenderer;
+    
+    // Property để truy cập currentLevel từ bên ngoài
+    public int CurrentLevel => currentLevel;
 
     void OnMouseDown()
     {
@@ -90,10 +97,61 @@ public class Tower : MonoBehaviour
         return null;
     }
 
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("Tower prefab must have SpriteRenderer component!");
+        }
+        
+        // Set sprite ban đầu
+        if (towerData != null && towerData.levels.Length > 0)
+        {
+            spriteRenderer.sprite = towerData.levels[0].sprite;
+            spriteRenderer.color = towerData.towerColor;
+        }
+    }
+
     public void Upgrade()
     {
-        Debug.Log("Upgrade tower!");
-        // TODO: Logic nâng cấp tháp (tăng level, damage, v.v.)
+        if (towerData == null)
+        {
+            Debug.LogError("TowerData not assigned!");
+            return;
+        }
+        
+        if (currentLevel >= towerData.levels.Length - 1)
+        {
+            Debug.Log("Tower already at max level!");
+            return;
+        }
+        
+        currentLevel++;
+        Debug.Log("Upgrade " + towerData.towerName + " to level " + currentLevel);
+        
+        // Thay đổi sprite
+        if (currentLevel < towerData.levels.Length)
+        {
+            spriteRenderer.sprite = towerData.levels[currentLevel].sprite;
+            
+            // Hiệu ứng nâng cấp
+            if (towerData.upgradeEffectPrefab != null)
+            {
+                Instantiate(towerData.upgradeEffectPrefab, transform.position, Quaternion.identity);
+            }
+            
+            // Âm thanh nâng cấp
+            if (towerData.upgradeSound != null)
+            {
+                AudioSource.PlayClipAtPoint(towerData.upgradeSound, transform.position);
+            }
+        }
+        
+        // TODO: Cập nhật stats khác (damage, range, fireRate)
+        Debug.Log("New stats - Damage: " + towerData.levels[currentLevel].damage + 
+                  ", Range: " + towerData.levels[currentLevel].range + 
+                  ", Fire Rate: " + towerData.levels[currentLevel].fireRate);
     }
 
     public void DestroyTower()
