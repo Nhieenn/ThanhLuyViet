@@ -33,7 +33,7 @@ MonoBehaviour:
     range: 4
     fireRate: 1.7
     upgradeCost: 0
-    description: "AK-47 t\u1ED1i \u0111"
+    description: "AK-47 t\u1ED1i \u0111a"
   towerType: 0
   towerColor: {r: 1, g: 1, b: 1, a: 1}
   upgradeEffectPrefab: {fileID: 0}
