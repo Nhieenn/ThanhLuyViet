@@ -1,8 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/dang nhap, dang ki/1x/1x.meta
+guid: 9dac2d2229163f444a648dc5649e01c0
+folderAsset: yes
+DefaultImporter:
+========
 guid: bc390046324571e41b30f7137bfaf055
 NativeFormatImporter:
+>>>>>>>> main:Assets/TileMap/duong di va co_7.asset.meta
   externalObjects: {}
-  mainObjectFileID: 11400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

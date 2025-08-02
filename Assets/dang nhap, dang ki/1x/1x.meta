@@ -1,4 +1,7 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Tilemap/duong di va nen co_6.asset.meta
+guid: 9fd795c37474ca2409c29b6d4f9d52a1
+========
 guid: 9dac2d2229163f444a648dc5649e01c0
 folderAsset: yes
 DefaultImporter:
@@ -6,3 +9,4 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+>>>>>>>> main:Assets/dang nhap, dang ki/1x/1x.meta
