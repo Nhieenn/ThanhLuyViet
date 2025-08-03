@@ -10,6 +10,7 @@ public class TowerStats : MonoBehaviour
     public Text rangeText;
     public Text fireRateText;
     public Text upgradeCostText;
+    public Text sellValueText; // Thêm text hiển thị giá bán
     public Text descriptionText;
     
     [Header("Visual Elements")]
@@ -59,6 +60,10 @@ public class TowerStats : MonoBehaviour
             
         if (descriptionText != null)
             descriptionText.text = currentLevelData.description;
+            
+        // Hiển thị giá bán tháp
+        if (sellValueText != null)
+            sellValueText.text = "Sell: $" + currentLevelData.sellValue;
         
         // Cập nhật nút upgrade và text giá
         if (upgradeButton != null)

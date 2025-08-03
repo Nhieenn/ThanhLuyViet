@@ -17,22 +17,25 @@ MonoBehaviour:
   buildCost: 300
   levels:
   - sprite: {fileID: 0}
-    damage: 300
-    range: 10
-    fireRate: 0.5
-    upgradeCost: 300
-    description: "T\xEAn l\u1EEDa ph\xF2ng kh\xF4ng SAM2 c\u01A1  b\u1EA3n"
-  - sprite: {fileID: 0}
-    damage: 350
-    range: 10
-    fireRate: 1
-    upgradeCost: 300
-    description: "T\xEAn l\u1EEDa ph\xF2ng kh\xF4ng SAM2 n\xE2ng c\u1EA5p"
-  - sprite: {fileID: 0}
     damage: 400
     range: 10
     fireRate: 0.5
+    upgradeCost: 300
+    sellValue: 275
+    description: "T\xEAn l\u1EEDa ph\xF2ng kh\xF4ng SAM2 c\u01A1  b\u1EA3n"
+  - sprite: {fileID: 0}
+    damage: 500
+    range: 10
+    fireRate: 0.5
+    upgradeCost: 300
+    sellValue: 575
+    description: "T\xEAn l\u1EEDa ph\xF2ng kh\xF4ng SAM2 n\xE2ng c\u1EA5p"
+  - sprite: {fileID: 0}
+    damage: 600
+    range: 10
+    fireRate: 0.5
     upgradeCost: 0
+    sellValue: 850
     description: "T\xEAn l\u1EEDa ph\xF2ng kh\xF4ng SAM2 t\u1ED1i \u0111a"
   towerType: 2
   towerColor: {r: 1, g: 1, b: 1, a: 1}

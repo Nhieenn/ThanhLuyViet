@@ -19,6 +19,7 @@ public class TowerData : ScriptableObject
         public float range = 3f;
         public float fireRate = 1f;
         public int upgradeCost = 50;
+        public int sellValue = 30; // Số tiền nhận được khi bán tháp
         public string description = "Level description";
     }
     
