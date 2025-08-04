@@ -10,7 +10,8 @@ public class MenuController : MonoBehaviour
     public GameObject creditPanel;
     public Toggle musicToggle;
     public Toggle audioEffectToggle;
-
+    public GameObject menu;
+    public GameObject lvsl;
     private void Start()
     {
         // Load trạng thái đã lưu khi mở Setting
@@ -23,7 +24,12 @@ public class MenuController : MonoBehaviour
     // Hàm gọi khi nhấn nút Play
     public void OnPlayButton()
     {
-        SceneManager.LoadScene(playSceneName);
+        //SceneManager.LoadScene(playSceneName);
+        if (menu != null)
+            menu.SetActive(false);     // Ẩn menu chính
+
+        if (lvsl != null)
+            lvsl.SetActive(true);          // Hiện menu chọn level
     }
 
     // Hàm gọi khi nhấn nút Continue
@@ -84,5 +90,31 @@ public class MenuController : MonoBehaviour
     {
         if (creditPanel != null)
             creditPanel.SetActive(false);
+    }
+    public void OnBackFromLevelSelect()
+    {
+        if (lvsl != null)
+            lvsl.SetActive(false);       // Ẩn menu chọn level
+
+        if (menu != null)
+            menu.SetActive(true);    // Hiện lại menu chính
+    }
+    public void loginButton()
+    {
+        SceneManager.LoadScene("FirebaseLogin");
+    }
+
+    public void LevelButton()
+    {
+        SceneManager.LoadScene("Lv1");
+        SceneManager.LoadScene("Lv2");
+        SceneManager.LoadScene("Lv3");
+        SceneManager.LoadScene("Lv4");
+        SceneManager.LoadScene("Lv5");
+        SceneManager.LoadScene("Lv6");
+        SceneManager.LoadScene("Lv7");
+        SceneManager.LoadScene("Lv8");
+        SceneManager.LoadScene("Lv9");
+        SceneManager.LoadScene("Lv10");
     }
 }
