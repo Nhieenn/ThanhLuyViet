@@ -150,5 +150,7 @@ public class MenuController : MonoBehaviour
     public void SelectLv10()
     {
         SceneManager.LoadScene("Lv10");
+
+        //
     }
 }
