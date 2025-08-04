@@ -8,6 +8,12 @@ public class Enemy : MonoBehaviour
     [Header("Current Stats")]
     public int currentHealth;
     
+    [Header("Modifiers")]
+    public float healthMultiplier = 1f;
+    public float speedMultiplier = 1f;
+    public float damageMultiplier = 1f;
+    public float rewardMultiplier = 1f;
+    
     [Header("Components")]
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -28,7 +34,7 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
-        MoveToTarget();
+        // Di chuyển được xử lý bởi EnemyPathfinding component
         UpdateHealthBar();
         
         // Special abilities
@@ -172,22 +178,22 @@ public class Enemy : MonoBehaviour
     // Helper methods
     public int GetMaxHealth()
     {
-        return enemyData.health;
+        return Mathf.RoundToInt(enemyData.health * healthMultiplier);
     }
     
     public int GetAttackDamage()
     {
-        return enemyData.attackDamage;
+        return Mathf.RoundToInt(enemyData.attackDamage * damageMultiplier);
     }
     
     public float GetMoveSpeed()
     {
-        return enemyData.moveSpeed;
+        return enemyData.moveSpeed * speedMultiplier;
     }
     
     public int GetMoneyReward()
     {
-        return enemyData.moneyReward;
+        return Mathf.RoundToInt(enemyData.moneyReward * rewardMultiplier);
     }
     
     public void SetTarget(Transform newTarget)
