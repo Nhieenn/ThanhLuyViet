@@ -10,6 +10,8 @@ public class MenuController : MonoBehaviour
     public GameObject creditPanel;
     public Toggle musicToggle;
     public Toggle audioEffectToggle;
+    public GameObject menulevel;
+    public GameObject mainMenuPanel; // Thêm dòng này ở đầu
 
     private void Start()
     {
@@ -22,8 +24,17 @@ public class MenuController : MonoBehaviour
 
     // Hàm gọi khi nhấn nút Play
     public void OnPlayButton()
-    {
-        SceneManager.LoadScene(playSceneName);
+    {// Hàm gọi khi nhấn nút Play
+
+
+        if (mainMenuPanel != null)
+            mainMenuPanel.SetActive(false);     // Ẩn menu chính
+
+        if (menulevel != null)
+            menulevel.SetActive(true);          // Hiện menu chọn level
+
+
+
     }
 
     // Hàm gọi khi nhấn nút Continue
@@ -84,5 +95,62 @@ public class MenuController : MonoBehaviour
     {
         if (creditPanel != null)
             creditPanel.SetActive(false);
+    }
+
+    public void OnBackFromLevelSelect()
+    {
+        if (menulevel != null)
+            menulevel.SetActive(false);       // Ẩn menu chọn level
+
+        if (mainMenuPanel != null)
+            mainMenuPanel.SetActive(true);    // Hiện lại menu chính
+    }
+    public void OnLoginBitton()
+    {
+        SceneManager.LoadScene("FirebaseLogin");
+
+
+    }
+    public void SelectLv1()
+    {
+        SceneManager.LoadScene("Lv1");
+    }
+    public void SelectLv2()
+    {
+        SceneManager.LoadScene("Lv2");
+    }
+    public void SelectLv3()
+    {
+        SceneManager.LoadScene("Lv3");
+    }
+    public void SelectLv4()
+    {
+        SceneManager.LoadScene("Lv4");
+    }
+    public void SelectLv5()
+    {
+        SceneManager.LoadScene("Lv5");
+    }
+    public void SelectLv6()
+    {
+        SceneManager.LoadScene("Lv6");
+    } public void SelectLv7()
+    {
+        SceneManager.LoadScene("Lv7");
+    }
+    public void SelectLv8()
+    {
+        SceneManager.LoadScene("Lv8"); 
+    }
+        public void SelectLv9()
+    {
+        SceneManager.LoadScene("Lv9");
+
+    }
+    public void SelectLv10()
+    {
+        SceneManager.LoadScene("Lv10");
+
+        //
     }
 }
