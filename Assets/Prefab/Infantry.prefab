@@ -151,7 +151,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -177,6 +177,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: f7a7d6dcca750964ea9743fd6cd7ee97, type: 2}
   currentHealth: 100
+  healthMultiplier: 1
+  speedMultiplier: 1
+  damageMultiplier: 1
+  rewardMultiplier: 1
   target: {fileID: 0}
   waypoints: []
   currentWaypointIndex: 0
