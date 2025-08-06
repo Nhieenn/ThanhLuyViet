@@ -61,6 +61,7 @@ public class MenuController : MonoBehaviour
     // Hàm gọi khi nhấn nút Credit
     public void OnCreditButton()
     {
+        settingsPanel.SetActive(false);
         if (creditPanel != null)
             creditPanel.SetActive(true);
     }
@@ -93,6 +94,7 @@ public class MenuController : MonoBehaviour
     // Hàm đóng panel Credit
     public void OnCloseCredit()
     {
+        settingsPanel.SetActive(true);
         if (creditPanel != null)
             creditPanel.SetActive(false);
     }
