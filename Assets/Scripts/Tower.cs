@@ -148,7 +148,13 @@ public class Tower : MonoBehaviour
             }
         }
         
-        // TODO: Cập nhật stats khác (damage, range, fireRate)
+        // Cập nhật shooting stats
+        TowerShooter shooter = GetComponent<TowerShooter>();
+        if (shooter != null)
+        {
+            shooter.OnTowerUpgraded();
+        }
+        
         Debug.Log("New stats - Damage: " + towerData.levels[currentLevel].damage + 
                   ", Range: " + towerData.levels[currentLevel].range + 
                   ", Fire Rate: " + towerData.levels[currentLevel].fireRate);

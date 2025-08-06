@@ -38,4 +38,10 @@ public class TowerData : ScriptableObject
     public Color towerColor = Color.white;
     public GameObject upgradeEffectPrefab;
     public AudioClip upgradeSound;
+    
+    [Header("Combat Settings")]
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 10f;
+    public GameObject muzzleFlashPrefab;
+    public AudioClip shootSound;
 } 
