@@ -633,8 +633,8 @@ MonoBehaviour:
   tower2Button: {fileID: 6220482513507632246}
   tower3Button: {fileID: 584402820879646062}
   cancelButton: {fileID: 8711988829818197853}
-  tower1Prefab: {fileID: 3136787598342134529, guid: 0d3150a6ece72c141b467a7816651fa3, type: 3}
-  tower2Prefab: {fileID: 7188811354945551860, guid: 3bab7d376cc27024cbca3d707f6ce926, type: 3}
+  tower1Prefab: {fileID: 7188811354945551860, guid: 3bab7d376cc27024cbca3d707f6ce926, type: 3}
+  tower2Prefab: {fileID: 3136787598342134529, guid: 0d3150a6ece72c141b467a7816651fa3, type: 3}
   tower3Prefab: {fileID: 1575605875767360336, guid: 982a191d967553f42b577856ce6e9894, type: 3}
   tower1Cost: 100
   tower2Cost: 200
