@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e42e9818edc0340bbf6d1c6c0350b5, type: 3}
+  m_Name: Infantry
+  m_EditorClassIdentifier: 
+  enemyName: Infantry
+  enemyDescription: "Di chuy\u1EC3n ch\u1EADm, m\xE1u m\u1ECFng,  nh\u01B0ng \u0111\xF4ng"
+  enemyType: 0
+  health: 100
+  attackDamage: 1
+  moveSpeed: 2
+  moneyReward: 5
+  sprite: {fileID: 5657417159645821613, guid: f798778770ab7d44b9b7b4b0e7ac71b3, type: 3}
+  enemyColor: {r: 1, g: 0, b: 0, a: 1}
+  deathEffectPrefab: {fileID: 0}
+  deathSound: {fileID: 0}
+  hitSound: {fileID: 0}
+  detectionRange: 5
+  canFly: 0
+  isArmored: 0
+  canHeal: 0
+  healRate: 0
+  canSpawnMinions: 0
+  minionPrefab: {fileID: 0}

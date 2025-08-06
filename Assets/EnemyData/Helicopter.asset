@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e42e9818edc0340bbf6d1c6c0350b5, type: 3}
+  m_Name: Helicopter
+  m_EditorClassIdentifier: 
+  enemyName: Tank
+  enemyDescription: "Di chuy\u1EC3n nhanh, m\xE1u kh\xE1 tr\xE2u"
+  enemyType: 2
+  health: 250
+  attackDamage: 2
+  moveSpeed: 4
+  moneyReward: 20
+  sprite: {fileID: -6820869279723027526, guid: 9c681e62189ffa14b8090d46b9dfa2ff, type: 3}
+  enemyColor: {r: 1, g: 0, b: 0, a: 1}
+  deathEffectPrefab: {fileID: 0}
+  deathSound: {fileID: 0}
+  hitSound: {fileID: 0}
+  detectionRange: 5
+  canFly: 0
+  isArmored: 0
+  canHeal: 0
+  healRate: 0
+  canSpawnMinions: 0
+  minionPrefab: {fileID: 0}
