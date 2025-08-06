@@ -7,6 +7,7 @@ public class TowerActionMenu : MonoBehaviour
 
     public Button upgradeButton;
     public Button destroyButton;
+    public Text sellValueText; // Thêm text hiển thị giá bán
 
     void Start()
     {
@@ -42,6 +43,13 @@ public class TowerActionMenu : MonoBehaviour
                 Destroy(gameObject); // Xóa menu
                 targetTower.DestroyTowerWithoutMenu(); // Xóa tháp mà không gọi CloseMenu nữa
             });
+        }
+        
+        // Hiển thị giá bán tháp
+        if (sellValueText != null && tower.towerData != null)
+        {
+            var currentLevelData = tower.towerData.levels[tower.CurrentLevel];
+            sellValueText.text = "Sell: $" + currentLevelData.sellValue;
         }
         
         Debug.Log("TowerActionMenu setup completed!");
