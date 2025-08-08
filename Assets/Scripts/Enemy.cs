@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour
             healthBarInstance = Instantiate(healthBarPrefab, transform.position + Vector3.up * 0.5f, Quaternion.identity);
         }
 
-        Debug.Log("Enemy " + enemyData.enemyName + " initialized with " + currentHealth + " HP");
+        Debug.Log($"Enemy {enemyData.enemyName} initialized with {currentHealth} HP");
     }
 
     void MoveAlongWaypoints()
@@ -78,10 +78,15 @@ public class Enemy : MonoBehaviour
         float speed = GetMoveSpeed();
         Vector3 direction = (targetPos - transform.position).normalized;
 
+        // Di chuyển
         transform.position += direction * speed * Time.deltaTime;
 
-        float distance = Vector3.Distance(transform.position, targetPos);
-        if (distance < waypointReachedThreshold)
+        // Xoay top-down (mặc định sprite hướng lên)
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        // Kiểm tra tới waypoint
+        if (Vector3.Distance(transform.position, targetPos) < waypointReachedThreshold)
         {
             currentWaypointIndex++;
             if (currentWaypointIndex >= waypoints.Length)
@@ -89,10 +94,6 @@ public class Enemy : MonoBehaviour
                 ReachDestination();
             }
         }
-
-        // Optional: rotate to face movement
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     void ReachDestination()
@@ -112,7 +113,7 @@ public class Enemy : MonoBehaviour
 
         StartCoroutine(DamageFlash());
 
-        Debug.Log(enemyData.enemyName + " took " + damage + " damage. Health: " + currentHealth);
+        Debug.Log($"{enemyData.enemyName} took {damage} damage. Health: {currentHealth}");
 
         if (currentHealth <= 0)
         {
@@ -133,10 +134,10 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
-        Debug.Log(enemyData.enemyName + " died!");
+        Debug.Log($"{enemyData.enemyName} died!");
 
         int moneyReward = enemyData.moneyReward;
-        Debug.Log("Player gained $" + moneyReward + " from killing " + enemyData.enemyName);
+        Debug.Log($"Player gained ${moneyReward} from killing {enemyData.enemyName}");
 
         if (enemyData.deathEffectPrefab != null)
         {

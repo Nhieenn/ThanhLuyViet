@@ -19,8 +19,8 @@ MonoBehaviour:
   attackDamage: 2
   moveSpeed: 2
   moneyReward: 20
-  sprite: {fileID: -1863244469662750718, guid: 9a2a34a6d614c6740875d1c22b747cd7, type: 3}
-  enemyColor: {r: 1, g: 0, b: 0, a: 1}
+  sprite: {fileID: 3414184848227267563, guid: 1dc25845a12e98940be17d58f804e8cb, type: 3}
+  enemyColor: {r: 1, g: 1, b: 1, a: 1}
   deathEffectPrefab: {fileID: 0}
   deathSound: {fileID: 0}
   hitSound: {fileID: 0}

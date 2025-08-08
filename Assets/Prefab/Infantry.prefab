@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 22278164267401316}
   - component: {fileID: 7975260529581271147}
   - component: {fileID: 1295375833166401550}
+  - component: {fileID: 7299197174616212575}
   m_Layer: 0
   m_Name: Infantry
   m_TagString: Untagged
@@ -30,8 +31,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.6672, y: -3.16112, z: 0}
-  m_LocalScale: {x: 0.77530485, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_Sprite: {fileID: -2034438863119622010, guid: c2ca41d484377d14ca225af10d1bf2d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 0
+  m_FlipY: 1
   m_DrawMode: 0
   m_Size: {x: 2.93, y: 0.92}
   m_AdaptiveModeThreshold: 0.5
@@ -185,3 +186,25 @@ MonoBehaviour:
   currentWaypointIndex: 0
   waypointReachedThreshold: 0.1
   healthBarPrefab: {fileID: 0}
+--- !u!95 &7299197174616212575
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238582789923963961}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 064a335609ae1fd4ca6ddfd0589f753d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
