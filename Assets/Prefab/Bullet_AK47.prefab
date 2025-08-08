@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3690559159736079479}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: -0, z: -0.019497123, w: 0.9998099}
+  m_LocalPosition: {x: 0.2866123, y: 0.1723438, z: 0}
+  m_LocalScale: {x: 0.152813, y: 0.18361531, z: 0.1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.234}
 --- !u!58 &1516723675549127519
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -68,8 +68,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: -0.006652267, y: 0}
+  m_Radius: 1.7838452
 --- !u!212 &9207194745158838813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,8 +114,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 42
-  m_Sprite: {fileID: -9191451701431411785, guid: 01d8bd5312542a84fa3f6989f890a70a, type: 3}
-  m_Color: {r: 1, g: 0.9625999, b: 0, a: 1}
+  m_Sprite: {fileID: 3521338049880737246, guid: 17e629ddae53c9b41b33fc5dc14098b7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
