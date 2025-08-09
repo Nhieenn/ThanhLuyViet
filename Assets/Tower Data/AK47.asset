@@ -18,22 +18,22 @@ MonoBehaviour:
   levels:
   - sprite: {fileID: 2455012999938688825, guid: 1452b16bf8b87744c9b4de88ed335e20, type: 3}
     damage: 15
-    range: 10
-    fireRate: 1.2
+    range: 3
+    fireRate: 2
     upgradeCost: 100
     sellValue: 75
     description: "AK47 c\u01A1 b\u1EA3n"
   - sprite: {fileID: 2455012999938688825, guid: 1452b16bf8b87744c9b4de88ed335e20, type: 3}
     damage: 25
     range: 3.5
-    fireRate: 1.5
+    fireRate: 2.5
     upgradeCost: 100
     sellValue: 175
     description: "AK47 n\xE2ng c\u1EA5p"
   - sprite: {fileID: 2455012999938688825, guid: 1452b16bf8b87744c9b4de88ed335e20, type: 3}
     damage: 35
     range: 4
-    fireRate: 1.7
+    fireRate: 3
     upgradeCost: 0
     sellValue: 250
     description: "AK-47 t\u1ED1i \u0111a"
