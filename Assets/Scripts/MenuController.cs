@@ -15,6 +15,8 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        creditPanel.SetActive(false);
+        settingsPanel.SetActive(false);
         // Load trạng thái đã lưu khi mở Setting
         if (musicToggle != null)
             musicToggle.isOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
@@ -26,15 +28,8 @@ public class MenuController : MonoBehaviour
     public void OnPlayButton()
     {// Hàm gọi khi nhấn nút Play
 
-
-        if (mainMenuPanel != null)
             mainMenuPanel.SetActive(false);     // Ẩn menu chính
-
-        if (menulevel != null)
             menulevel.SetActive(true);          // Hiện menu chọn level
-
-
-
     }
 
     // Hàm gọi khi nhấn nút Continue
