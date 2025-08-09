@@ -1,50 +1,53 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("Spawn Settings")]
-    public GameObject enemyPrefab;
-    public float spawnInterval = 2f;
-    public Transform spawnPoint;
+    [Header("Wave Settings")]
+    public List<WaveConfigSO> waveConfigs;                 // Danh sách các wave
+    public Transform pathParentInScene;                    // Path dùng chung (gán từ scene)
 
-    [Header("Waypoints")]
-    public Transform pathParent;
+    private int currentWave = 0;
 
-    private float spawnTimer;
-
-    void Update()
+    private void Start()
     {
-        spawnTimer += Time.deltaTime;
+        StartCoroutine(SpawnAllWaves());
+    }
 
-        if (spawnTimer >= spawnInterval)
+    IEnumerator SpawnAllWaves()
+    {
+        for (currentWave = 0; currentWave < waveConfigs.Count; currentWave++)
         {
-            spawnTimer = 0f;
-            SpawnEnemy();
+            var waveConfig = waveConfigs[currentWave];
+
+            // Gán đường path từ scene vào wave
+            waveConfig.pathParent = pathParentInScene;
+
+            yield return StartCoroutine(SpawnWave(waveConfig));
+            yield return new WaitForSeconds(2f); // Delay giữa các wave, tuỳ chỉnh
         }
     }
 
-    void SpawnEnemy()
+    IEnumerator SpawnWave(WaveConfigSO waveConfig)
     {
-        if (enemyPrefab == null || spawnPoint == null || pathParent == null)
+        for (int i = 0; i < waveConfig.enemies.Count; i++)
         {
-            Debug.LogError("Missing references in EnemySpawner!");
-            return;
-        }
+            GameObject enemyPrefab = waveConfig.enemies[i];
+            GameObject newEnemy = Instantiate(enemyPrefab, waveConfig.GetWaypoint(0).position, Quaternion.identity);
 
-        // Instantiate enemy
-        GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-
-        // Gán đường path
-        Enemy enemy = newEnemy.GetComponent<Enemy>();
-        if (enemy != null)
-        {
-            Vector3[] pathPoints = new Vector3[pathParent.childCount];
-            for (int i = 0; i < pathParent.childCount; i++)
+            Enemy enemy = newEnemy.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                pathPoints[i] = pathParent.GetChild(i).position;
+                Vector3[] waypoints = new Vector3[waveConfig.GetWaypointCount()];
+                for (int j = 0; j < waypoints.Length; j++)
+                {
+                    waypoints[j] = waveConfig.GetWaypoint(j).position;
+                }
+                enemy.SetWaypoints(waypoints);
             }
 
-            enemy.SetWaypoints(pathPoints);
+            yield return new WaitForSeconds(waveConfig.spawnInterval);
         }
     }
 }
