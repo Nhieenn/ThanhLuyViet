@@ -38889,6 +38889,34 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1296727255}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: pathParentInScene
+      value: 
+      objectReference: {fileID: 119101587}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: waveConfigs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b70c893bcf86f04282434cc6f437079, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: ee78f27d9995a92438ad0dd2f1bc1b9e, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 79383a0bbc4af704fa25ce0cf6dda160, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: febd385f6c0d10f47ba4c091b3ccb178, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 891809992c581644f821531045781733, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41151,6 +41179,10 @@ PrefabInstance:
     - target: {fileID: 5820349645397670650, guid: 93e98c7511eb39040acd55e8f403284e, type: 3}
       propertyPath: m_Name
       value: Path Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820349645397670650, guid: 93e98c7511eb39040acd55e8f403284e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7170674079708307791, guid: 93e98c7511eb39040acd55e8f403284e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -601,6 +601,42 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1090318206}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: pathParentInScene
+      value: 
+      objectReference: {fileID: 771072736}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: waveConfigs.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9788b04eda3141345b5e549dd0395252, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 805baf3347d669b49b8d81717aa864c9, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 092fe50b7541424499113f4331701405, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: af7df8bd119fd604aab67e89a2009740, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f8976d8560d83c24cbc02e6dc63f7e06, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c8c5a4d8b6834294e804d3755f6bbbf4, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a72db70b2d6643f4baacef90e24b9507, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

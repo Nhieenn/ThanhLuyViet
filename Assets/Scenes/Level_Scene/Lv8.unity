@@ -813,6 +813,38 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 2125076337}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: pathParentInScene
+      value: 
+      objectReference: {fileID: 59106113}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: waveConfigs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 76e9401430c3bcb4190a45ade18cd7ca, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9898855125122a04182af1a6c1fade75, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 29c7500614bcabf4f91a8a342f7bfd59, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 90b2c2d61bc2a3e42a27021e155d0e26, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 5938b8da39e50834da9008dade728bb8, type: 2}
+    - target: {fileID: 6766547176424541962, guid: 0f1ef4986fef3cc49be4bf77fd36fa21, type: 3}
+      propertyPath: 'waveConfigs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7be0604378c9c0e468b08420bbf302e5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -32668,6 +32700,10 @@ PrefabInstance:
     - target: {fileID: 5820349645397670650, guid: 93e98c7511eb39040acd55e8f403284e, type: 3}
       propertyPath: m_Name
       value: Path Parent
+      objectReference: {fileID: 0}
+    - target: {fileID: 5820349645397670650, guid: 93e98c7511eb39040acd55e8f403284e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7170674079708307791, guid: 93e98c7511eb39040acd55e8f403284e, type: 3}
       propertyPath: m_LocalPosition.x

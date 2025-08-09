@@ -178,7 +178,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: cc2bde51548b55b429e90c6272fab8f9, type: 2}
   currentHealth: 250
   healthMultiplier: 1
-  speedMultiplier: 0.5
+  speedMultiplier: 1
   damageMultiplier: 1
   rewardMultiplier: 1
   waypoints: []

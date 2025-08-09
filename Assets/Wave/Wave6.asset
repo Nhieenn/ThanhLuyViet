@@ -12,6 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2678d13038973d8449f6a4ed3b2dfd07, type: 3}
   m_Name: Wave6
   m_EditorClassIdentifier: 
-  enemies: []
-  spawnInterval: 1
+  enemies:
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  spawnInterval: 2
   pathParent: {fileID: 0}
