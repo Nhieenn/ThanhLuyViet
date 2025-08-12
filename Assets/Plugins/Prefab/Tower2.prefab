@@ -141,7 +141,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.020719528, y: -0.0063753873}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -151,7 +151,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.58242154, y: 0.47722933}
   m_EdgeRadius: 0
 --- !u!61 &1005621824073223160
 BoxCollider2D:
@@ -187,7 +187,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.021991014, y: -0.0095629245}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -197,7 +197,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5785892, y: 0.47723004}
   m_EdgeRadius: 0
 --- !u!114 &580417011210886863
 MonoBehaviour:
@@ -232,3 +232,4 @@ MonoBehaviour:
   targetingStrategy: 3
   muzzleFlashPrefab: {fileID: 0}
   shootSound: {fileID: 0}
+  shootVolume: 1

@@ -92,8 +92,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 6024329786768191557}
+  historyPanel: {fileID: 0}
   maxHealth: 20
   currentHealth: 20
+  useGameWinManager: 1
+  showHistoryPanelOnDeath: 1
 --- !u!1 &360240252128771161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7459419044361495509
 RectTransform:
   m_ObjectHideFlags: 0

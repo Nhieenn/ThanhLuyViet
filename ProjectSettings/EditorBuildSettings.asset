@@ -7,7 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    guid: 56f8e147a43f42348bd6618f8e17d72f
   - enabled: 1
     path: Assets/Scenes/Play Scene.unity
     guid: be507e446f72bb340988ad26b51aa25e
@@ -22,19 +22,19 @@ EditorBuildSettings:
     guid: 9a41fc58bf8621d40bfc35f061a6addc
   - enabled: 1
     path: Assets/Scenes/Level_Scene/Lv3.unity
-    guid: 4eb771802ef094f42843480456b2d1b6
+    guid: f8118e9d7831aa544904ed409aba110e
   - enabled: 1
     path: Assets/Scenes/Level_Scene/Lv4.unity
-    guid: a4c21d7528bca9d49a5b0c619a4eecdf
+    guid: 4aadf62aa026ba5408538814fd6ea39f
   - enabled: 1
     path: Assets/Scenes/Level_Scene/Lv5.unity
-    guid: e299d4a773ca5e54888ab363990f62dd
+    guid: 9b803bc737ae6a94880622d961978019
   - enabled: 1
     path: Assets/Scenes/Level_Scene/Lv6.unity
-    guid: 7a83314ed45a37242aedcbd6c969aefd
+    guid: 7c9949682fa96eb4c8fc13a14f27d5e4
   - enabled: 1
     path: Assets/Scenes/Level_Scene/Lv7.unity
-    guid: 61f90747fc9cf9940a1f32bc02db3d45
+    guid: f2854130ba1e6454184dd0542190e5a9
   - enabled: 1
     path: Assets/Scenes/Level_Scene/Lv8.unity
     guid: 95425d62a74983746aae4d7436805f72
@@ -44,9 +44,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level_Scene/Lv10.unity
     guid: 4a5f2015144f5c34397077948d21ffe5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level_Scene/Lv2_.unity
     guid: 14f6432392353ee448468e0564dad644
+  - enabled: 0
+    path: Assets/Scenes/Level_Scene/Lv5_.unity
+    guid: e299d4a773ca5e54888ab363990f62dd
+  - enabled: 0
+    path: Assets/Scenes/Level_Scene/Lv6_.unity
+    guid: 7a83314ed45a37242aedcbd6c969aefd
+  - enabled: 0
+    path: Assets/Scenes/Level_Scene/Lv4_.unity
+    guid: a4c21d7528bca9d49a5b0c619a4eecdf
+  - enabled: 1
+    path: Assets/Scenes/Level_Scene/Lv7_.unity
+    guid: 61f90747fc9cf9940a1f32bc02db3d45
+  - enabled: 0
+    path: Assets/Scenes/Level_Scene/Lv3_.unity
+    guid: 4eb771802ef094f42843480456b2d1b6
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 2a753728dca8a2345b3b4406438f33d3, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 811834017db35a547a4f48ed650a65f8, type: 2}
