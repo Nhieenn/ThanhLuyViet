@@ -16,6 +16,8 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         // Load trạng thái đã lưu khi mở Setting
+        settingsPanel.SetActive(false);
+        creditPanel.SetActive(false);
         if (musicToggle != null)
             musicToggle.isOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
         if (audioEffectToggle != null)

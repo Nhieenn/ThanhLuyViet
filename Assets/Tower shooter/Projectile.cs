@@ -6,76 +6,84 @@ public class Projectile : MonoBehaviour
     public float speed = 10f;
     public int damage = 10;
     public float lifetime = 5f;
-    
+
     [Header("Visual Effects")]
     public GameObject hitEffectPrefab;
     public AudioClip hitSound;
+    public AudioClip shootSound;      // Tiếng đạn bắn
     public TrailRenderer trailRenderer;
-    
+
     [Header("Projectile Type")]
     public ProjectileType projectileType = ProjectileType.Bullet;
-    
+
     private Enemy target;
     private Vector3 direction;
     private float timer;
-    
+
     public enum ProjectileType
     {
         Bullet,     // AK47 - nhỏ, nhanh
         Rocket,     // B41 - lớn, có splash
         Missile     // SAM2 - có tracking
     }
-    
+
     public void Initialize(Enemy targetEnemy, int damageAmount, float projectileSpeed)
     {
         target = targetEnemy;
         damage = damageAmount;
         speed = projectileSpeed;
         timer = 0f;
-        
-        // Calculate direction
+
         if (target != null)
         {
+            // Tính direction từ vị trí viên đạn đến target (bình thường lúc spawn viên đạn đã xoay đúng)
             direction = (target.transform.position - transform.position).normalized;
         }
-        
-        // Set projectile type based on speed
+        else
+        {
+            // Nếu không có target, đi thẳng theo forward (hoặc right, tùy setup)
+            direction = transform.right;  // default hướng ngang bên phải
+        }
+
+        // Set projectile type dựa trên speed
         if (speed > 15f)
             projectileType = ProjectileType.Bullet;
         else if (speed > 8f)
             projectileType = ProjectileType.Rocket;
         else
             projectileType = ProjectileType.Missile;
-        
-        // Setup visual effects
+
         SetupVisualEffects();
+        PlayShootSound();
     }
-    
+
+    void PlayShootSound()
+    {
+        if (shootSound != null)
+        {
+            AudioSource.PlayClipAtPoint(shootSound, transform.position);
+        }
+    }
+
     void Update()
     {
         timer += Time.deltaTime;
-        
-        // Destroy if lifetime exceeded
+
         if (timer >= lifetime)
         {
             DestroyProjectile();
             return;
         }
-        
-        // Move projectile
+
         MoveProjectile();
-        
-        // Check for target collision
         CheckTargetCollision();
     }
-    
+
     void MoveProjectile()
     {
         switch (projectileType)
         {
             case ProjectileType.Bullet:
-                MoveStraight();
-                break;
             case ProjectileType.Rocket:
                 MoveStraight();
                 break;
@@ -84,24 +92,30 @@ public class Projectile : MonoBehaviour
                 break;
         }
     }
-    
+
     void MoveStraight()
     {
         transform.position += direction * speed * Time.deltaTime;
+
+        // Xoay projectile theo hướng di chuyển (2D top-down, quay quanh trục Z)
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-    
+
     void MoveWithTracking()
     {
         if (target != null && target.currentHealth > 0)
         {
-            // Update direction towards target
             Vector3 targetDirection = (target.transform.position - transform.position).normalized;
             direction = Vector3.Lerp(direction, targetDirection, Time.deltaTime * 2f);
         }
-        
+
         transform.position += direction * speed * Time.deltaTime;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-    
+
     void CheckTargetCollision()
     {
         if (target == null || target.currentHealth <= 0)
@@ -109,47 +123,38 @@ public class Projectile : MonoBehaviour
             DestroyProjectile();
             return;
         }
-        
+
         float distance = Vector3.Distance(transform.position, target.transform.position);
-        if (distance < 0.5f) // Collision threshold
+        if (distance < 0.5f)
         {
             HitTarget();
         }
     }
-    
+
     void HitTarget()
     {
-        // Deal damage to target
         if (target != null)
         {
             target.TakeDamage(damage);
-            
-            // Log hit
             Debug.Log($"Projectile hit {target.enemyData.enemyName} for {damage} damage!");
         }
-        
-        // Create hit effects
+
         CreateHitEffects();
-        
-        // Destroy projectile
         DestroyProjectile();
     }
-    
+
     void CreateHitEffects()
     {
-        // Create hit effect
         if (hitEffectPrefab != null)
         {
             Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
         }
-        
-        // Play hit sound
+
         if (hitSound != null)
         {
             AudioSource.PlayClipAtPoint(hitSound, transform.position);
         }
-        
-        // Create different effects based on projectile type
+
         switch (projectileType)
         {
             case ProjectileType.Bullet:
@@ -163,45 +168,39 @@ public class Projectile : MonoBehaviour
                 break;
         }
     }
-    
+
     void CreateBulletHitEffect()
     {
-        // Small spark effect
         Debug.Log("Bullet hit effect created");
     }
-    
+
     void CreateRocketHitEffect()
     {
-        // Explosion effect with splash damage
         Debug.Log("Rocket explosion effect created");
-        
-        // Optional: Deal splash damage to nearby enemies
+
         Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 2f);
         foreach (Collider2D collider in nearbyEnemies)
         {
             Enemy enemy = collider.GetComponent<Enemy>();
             if (enemy != null && enemy != target)
             {
-                enemy.TakeDamage(damage / 2); // Half damage for splash
+                enemy.TakeDamage(damage / 2);
             }
         }
     }
-    
+
     void CreateMissileHitEffect()
     {
-        // Large explosion effect
         Debug.Log("Missile explosion effect created");
     }
-    
+
     void SetupVisualEffects()
     {
-        // Setup trail renderer if available
         if (trailRenderer != null)
         {
             trailRenderer.enabled = true;
         }
-        
-        // Set projectile color based on type
+
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
@@ -219,22 +218,20 @@ public class Projectile : MonoBehaviour
             }
         }
     }
-    
+
     void DestroyProjectile()
     {
-        // Disable trail renderer
         if (trailRenderer != null)
         {
             trailRenderer.enabled = false;
         }
-        
+
         Destroy(gameObject);
     }
-    
-    // Visual debugging
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
-} 
+}

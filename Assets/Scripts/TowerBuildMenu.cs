@@ -15,9 +15,11 @@ public class TowerBuildMenu : MonoBehaviour
     public GameObject tower1Prefab;
     public GameObject tower2Prefab;
     public GameObject tower3Prefab;
-    public int tower1Cost = 100;
-    public int tower2Cost = 200;
-    public int tower3Cost = 300;
+    
+    // Remove hardcoded costs - will get from TowerData
+    // public int tower1Cost = 100;
+    // public int tower2Cost = 200;
+    // public int tower3Cost = 300;
 
     public void SetBuildableArea(BuildableArea area)
     {
@@ -36,42 +38,65 @@ public class TowerBuildMenu : MonoBehaviour
         tower3Button.onClick.RemoveAllListeners();
         cancelButton.onClick.RemoveAllListeners(); // Xóa listener cũ của nút thoát
         
+        // Get costs from TowerData
+        int tower1Cost = GetTowerCost(tower1Prefab);
+        int tower2Cost = GetTowerCost(tower2Prefab);
+        int tower3Cost = GetTowerCost(tower3Prefab);
+        
         tower1Button.onClick.AddListener(() => BuildTower(tower1Prefab, tower1Cost));
         tower2Button.onClick.AddListener(() => BuildTower(tower2Prefab, tower2Cost));
         tower3Button.onClick.AddListener(() => BuildTower(tower3Prefab, tower3Cost));
         cancelButton.onClick.AddListener(CancelBuild); // Thêm listener cho nút thoát
+        
+        Debug.Log($"Tower costs: {tower1Cost}, {tower2Cost}, {tower3Cost}");
+    }
+    
+    // Get cost from TowerData
+    private int GetTowerCost(GameObject towerPrefab)
+    {
+        if (towerPrefab != null)
+        {
+            Tower towerComponent = towerPrefab.GetComponent<Tower>();
+            if (towerComponent != null && towerComponent.towerData != null)
+            {
+                int cost = towerComponent.towerData.buildCost;
+                Debug.Log($"✅ Getting cost for {towerComponent.towerData.towerName}: {cost} coins");
+                return cost;
+            }
+            else
+            {
+                Debug.LogError($"❌ TowerData not found for {towerPrefab.name}");
+                if (towerComponent == null)
+                {
+                    Debug.LogError($"❌ Tower component not found on {towerPrefab.name}");
+                }
+                else if (towerComponent.towerData == null)
+                {
+                    Debug.LogError($"❌ TowerData is null on {towerPrefab.name}");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError($"❌ Tower prefab is null!");
+        }
+        
+        // Fallback cost if TowerData not found
+        Debug.LogWarning($"⚠️ Using fallback cost: 100 coins");
+        return 100;
     }
 
     void BuildTower(GameObject towerPrefab, int cost)
     {
         if (buildableArea == null) return; // Tránh lỗi nếu đã bị destroy
 
-        Debug.Log("BuildTower called! Prefab: " + towerPrefab.name + " at position: " + buildableArea.transform.position);
-        Instantiate(towerPrefab, buildableArea.transform.position, Quaternion.identity);
-
-        // Đóng menu trước khi destroy buildableArea
-        buildableArea.CloseMenu();
-
-        // Vô hiệu hóa các button để không thể bấm tiếp
-        tower1Button.interactable = false;
-        tower2Button.interactable = false;
-        tower3Button.interactable = false;
-        cancelButton.interactable = false;
-
-        // Xóa vùng build sau khi xây tháp
-        Destroy(buildableArea.gameObject);
-
-        // Bật lại camera movement
-        Camera_move.EnableCameraMovement();
-
-        // Reset singleton reference
-        if (currentOpenMenu == this)
-        {
-            currentOpenMenu = null;
-        }
-
-        // Xóa menu sau khi đặt tháp (nếu muốn)
-        Destroy(gameObject);
+        Debug.Log($"BuildTower called! Prefab: {towerPrefab.name}, Cost: {cost}");
+        
+        // Gọi BuildTower của BuildableArea để có validation tiền
+        buildableArea.BuildTower(towerPrefab, cost);
+        
+        // Đóng menu sau khi xây tháp (BuildableArea sẽ tự xử lý việc destroy)
+        ClosePanelOnly();
     }
 
     // Hàm mới: Hủy việc xây tháp

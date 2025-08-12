@@ -18,5 +18,7 @@ MonoBehaviour:
   - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
   - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
   - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
+  - {fileID: 2238582789923963961, guid: 3c4e82305e3553c4f807d9354df9e446, type: 3}
   spawnInterval: 2
   pathParent: {fileID: 0}

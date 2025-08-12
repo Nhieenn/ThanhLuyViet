@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9121537073775318080}
   - component: {fileID: 4629063943283791683}
   - component: {fileID: 2489308011823206775}
+  - component: {fileID: 2058856952725846504}
   m_Layer: 5
   m_Name: Inf
   m_TagString: Untagged
@@ -78,6 +79,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2058856952725846504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33745417040612840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8796d02feda5fc2408ba69776fc832c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 6024329786768191557}
+  maxHealth: 20
+  currentHealth: 20
 --- !u!1 &360240252128771161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,6 +2558,7 @@ GameObject:
   - component: {fileID: 784181274518401989}
   - component: {fileID: 6843921270237240969}
   - component: {fileID: 8258049826344421789}
+  - component: {fileID: 3098641773851252944}
   m_Layer: 5
   m_Name: Coin
   m_TagString: Untagged
@@ -2608,6 +2625,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3098641773851252944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533853045777967975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e18541615cea3444b98488f376baaf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinText: {fileID: 5504260149140462258}
+  coinIcon: {fileID: 7618437208006636718}
+  coinAnimator: {fileID: 0}
+  addCoinTrigger: AddCoin
+  spendCoinTrigger: SpendCoin
 --- !u!1 &6780555385536424236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3395,7 +3429,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}

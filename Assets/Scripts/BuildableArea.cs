@@ -113,12 +113,33 @@ public class BuildableArea : MonoBehaviour
 
     public void BuildTower(GameObject towerPrefab, int cost)
     {
-        // TODO: Kiểm tra tiền, trừ tiền, xây tower
-        // Ví dụ:
-        // if (PlayerCurrency.Instance.TrySpend(cost)) {
-        //     Instantiate(towerPrefab, transform.position, Quaternion.identity);
-        //     Destroy(gameObject); // Xóa vùng buildable
-        // }
+        // Kiểm tra tiền trước khi xây tower
+        if (CoinManager.Instance != null)
+        {
+            if (CoinManager.Instance.CanAfford(cost))
+            {
+                if (CoinManager.Instance.TrySpendCoins(cost))
+                {
+                    Instantiate(towerPrefab, transform.position, Quaternion.identity);
+                    Debug.Log($"✅ Tower built successfully! Cost: {cost}");
+                    
+                    // Đóng menu và xử lý cleanup
+                    CloseMenu();
+                    
+                    // Xóa vùng build sau khi xây tháp thành công
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                int missing = CoinManager.Instance.GetMissingAmount(cost);
+                Debug.LogWarning($"❌ Cannot build tower! Missing {missing} coins. Required: {cost}, Available: {CoinManager.Instance.CurrentCoins}");
+            }
+        }
+        else
+        {
+            Debug.LogError("CoinManager not found!");
+        }
     }
 
     public void CloseMenu()

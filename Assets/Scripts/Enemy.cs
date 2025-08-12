@@ -98,7 +98,17 @@ public class Enemy : MonoBehaviour
 
     void ReachDestination()
     {
-        Debug.Log("Enemy reached the end!");
+        Debug.Log($"{enemyData.enemyName} reached the main base!");
+        
+        // Enemy đã đến đích, sẽ được xử lý bởi EndPosDamage script
+        // Không cần gọi MainBase.TakeDamage() ở đây nữa
+        
+        // Xóa health bar nếu có
+        if (healthBarInstance != null)
+        {
+            Destroy(healthBarInstance);
+        }
+        
         Destroy(gameObject);
     }
 
@@ -136,8 +146,14 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log($"{enemyData.enemyName} died!");
 
-        int moneyReward = enemyData.moneyReward;
+        int moneyReward = GetMoneyReward();
         Debug.Log($"Player gained ${moneyReward} from killing {enemyData.enemyName}");
+
+        // Thêm coin trực tiếp khi enemy chết (cho Tower Defense)
+        if (CoinManager.Instance != null)
+        {
+            CoinManager.Instance.AddCoinsFromEnemy(moneyReward);
+        }
 
         if (enemyData.deathEffectPrefab != null)
         {

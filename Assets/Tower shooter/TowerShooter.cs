@@ -7,61 +7,69 @@ public class TowerShooter : MonoBehaviour
     public float range = 3f;
     public float fireRate = 1f;
     public int damage = 10;
-    
+
     [Header("Projectile Settings")]
     public GameObject projectilePrefab;
     public float projectileSpeed = 10f;
-    
+
     [Header("Targeting Strategy")]
     public TargetingStrategy targetingStrategy = TargetingStrategy.Nearest;
-    
+
     [Header("Visual Effects")]
     public GameObject muzzleFlashPrefab;
     public AudioClip shootSound;
-    
+    [Range(0f, 1f)] public float shootVolume = 1f;
+
     private float lastShootTime;
     private Enemy currentTarget;
     private Tower tower;
     private TowerData towerData;
-    
-    // Targeting strategies
+    private Animator animator;
+    private AudioSource audioSource; // để phát tiếng bắn
+
     public enum TargetingStrategy
     {
-        Nearest,        // Enemy gần nhất (AK47)
-        HighestHP,      // Enemy có HP cao nhất (B41)
-        Aircraft,       // Chỉ bắn máy bay (SAM2)
-        FirstInRange    // Enemy đầu tiên trong range
+        Nearest,
+        HighestHP,
+        Aircraft,
+        FirstInRange
     }
-    
+
     void Start()
     {
         tower = GetComponent<Tower>();
+        animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>(); // Lấy AudioSource gắn trên tháp
+
+        if (audioSource != null)
+        {
+            audioSource.playOnAwake = false; // tắt auto phát khi spawn
+        }
+
         if (tower != null)
         {
             towerData = tower.towerData;
             UpdateStatsFromTowerData();
         }
     }
-    
+
     void Update()
     {
-        if (Time.timeScale == 0) return; // Không bắn khi game pause
-        
+        if (Time.timeScale == 0) return;
+
         FindTarget();
-        
+
         if (currentTarget != null)
         {
-            // Rotate tower to face target
             RotateTowardsTarget();
-            
-            // Shoot if cooldown is ready
+
             if (Time.time - lastShootTime >= 1f / fireRate)
             {
                 Shoot();
             }
         }
     }
-    
+
     void UpdateStatsFromTowerData()
     {
         if (towerData != null && towerData.levels.Length > tower.CurrentLevel)
@@ -70,97 +78,65 @@ public class TowerShooter : MonoBehaviour
             damage = levelData.damage;
             range = levelData.range;
             fireRate = levelData.fireRate;
-            
-            // Set projectile prefab and speed from TowerData
+
             if (towerData.projectilePrefab != null)
-            {
                 projectilePrefab = towerData.projectilePrefab;
-            }
+
             projectileSpeed = towerData.projectileSpeed;
-            
-            // Set visual effects from TowerData
             muzzleFlashPrefab = towerData.muzzleFlashPrefab;
             shootSound = towerData.shootSound;
-            
-            // Set targeting strategy based on tower type
+
             switch (towerData.towerType)
             {
-                case TowerType.AK:
-                    targetingStrategy = TargetingStrategy.Nearest;
-                    break;
-                case TowerType.B41:
-                    targetingStrategy = TargetingStrategy.HighestHP;
-                    break;
-                case TowerType.SAM2:
-                    targetingStrategy = TargetingStrategy.Aircraft;
-                    break;
+                case TowerType.AK: targetingStrategy = TargetingStrategy.Nearest; break;
+                case TowerType.B41: targetingStrategy = TargetingStrategy.HighestHP; break;
+                case TowerType.SAM2: targetingStrategy = TargetingStrategy.Aircraft; break;
             }
         }
     }
-    
+
     void FindTarget()
     {
-        // Find all enemies in range
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, range);
         List<Enemy> enemiesInRange = new List<Enemy>();
-        
+
         foreach (Collider2D collider in colliders)
         {
             Enemy enemy = collider.GetComponent<Enemy>();
-            if (enemy != null && enemy.currentHealth > 0)
+            if (enemy != null && enemy.currentHealth > 0 && IsValidTarget(enemy))
             {
-                Debug.Log("Enemy found: " + currentTarget);
-                // Check if enemy is valid target based on strategy
-                if (IsValidTarget(enemy))
-                {
-                    enemiesInRange.Add(enemy);
-                }
+                enemiesInRange.Add(enemy);
             }
         }
-        
-        if (enemiesInRange.Count > 0)
-        {
-            currentTarget = SelectBestTarget(enemiesInRange);
-        }
-        else
-        {
-            currentTarget = null;
-        }
+
+        currentTarget = enemiesInRange.Count > 0 ? SelectBestTarget(enemiesInRange) : null;
     }
-    
+
     bool IsValidTarget(Enemy enemy)
     {
-        switch (targetingStrategy)
-        {
-            case TargetingStrategy.Aircraft:
-                return enemy.enemyData.enemyType == EnemyType.Aircraft;
-            default:
-                return true; // All other strategies can target any enemy
-        }
+        if (targetingStrategy == TargetingStrategy.Aircraft)
+            return enemy.enemyData.enemyType == EnemyType.Aircraft;
+
+        return true;
     }
-    
+
     Enemy SelectBestTarget(List<Enemy> enemies)
     {
         switch (targetingStrategy)
         {
-            case TargetingStrategy.Nearest:
-                return GetNearestEnemy(enemies);
-            case TargetingStrategy.HighestHP:
-                return GetEnemyWithHighestHP(enemies);
-            case TargetingStrategy.Aircraft:
-                return GetNearestEnemy(enemies); // Among aircraft
-            case TargetingStrategy.FirstInRange:
-                return enemies[0];
-            default:
-                return enemies[0];
+            case TargetingStrategy.Nearest: return GetNearestEnemy(enemies);
+            case TargetingStrategy.HighestHP: return GetEnemyWithHighestHP(enemies);
+            case TargetingStrategy.FirstInRange: return enemies[0];
+            case TargetingStrategy.Aircraft: return GetNearestEnemy(enemies);
         }
+        return enemies[0];
     }
-    
+
     Enemy GetNearestEnemy(List<Enemy> enemies)
     {
         Enemy nearest = null;
         float minDistance = float.MaxValue;
-        
+
         foreach (Enemy enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
@@ -170,15 +146,14 @@ public class TowerShooter : MonoBehaviour
                 nearest = enemy;
             }
         }
-        
         return nearest;
     }
-    
+
     Enemy GetEnemyWithHighestHP(List<Enemy> enemies)
     {
         Enemy highestHP = null;
         int maxHP = 0;
-        
+
         foreach (Enemy enemy in enemies)
         {
             if (enemy.currentHealth > maxHP)
@@ -187,10 +162,9 @@ public class TowerShooter : MonoBehaviour
                 highestHP = enemy;
             }
         }
-        
         return highestHP;
     }
-    
+
     void RotateTowardsTarget()
     {
         if (currentTarget != null)
@@ -200,47 +174,37 @@ public class TowerShooter : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
-    
+
     void Shoot()
     {
-        Debug.Log("Shoot called!");
         if (currentTarget == null || projectilePrefab == null) return;
-        
-        // Create projectile
+
+        if (animator != null)
+            animator.SetTrigger("Shoot");
+
         GameObject projectileObj = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Projectile projectile = projectileObj.GetComponent<Projectile>();
-        
         if (projectile != null)
-        {
             projectile.Initialize(currentTarget, damage, projectileSpeed);
-        }
-        
-        // Visual and audio effects
+
         if (muzzleFlashPrefab != null)
-        {
             Instantiate(muzzleFlashPrefab, transform.position, transform.rotation);
-        }
-        
-        if (shootSound != null)
-        {
-            AudioSource.PlayClipAtPoint(shootSound, transform.position);
-        }
-        
+
+        if (shootSound != null && audioSource != null)
+            audioSource.PlayOneShot(shootSound, shootVolume);
+
         lastShootTime = Time.time;
-        
-        Debug.Log($"{towerData.towerName} shot at {currentTarget.enemyData.enemyName} for {damage} damage!");
     }
-    
-    // Called when tower is upgraded
-    public void OnTowerUpgraded()
-    {
-        UpdateStatsFromTowerData();
-    }
-    
-    // Visual range indicator (for debugging)
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
-} 
+
+    public void OnTowerUpgraded()
+    {
+        UpdateStatsFromTowerData();
+    }
+
+}

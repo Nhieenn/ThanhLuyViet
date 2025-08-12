@@ -127,42 +127,75 @@ public class Tower : MonoBehaviour
             return;
         }
         
-        currentLevel++;
-        Debug.Log("Upgrade " + towerData.towerName + " to level " + currentLevel);
+        // Kiểm tra tiền để nâng cấp
+        int upgradeCost = towerData.levels[currentLevel + 1].upgradeCost;
         
-        // Thay đổi sprite
-        if (currentLevel < towerData.levels.Length)
+        if (CoinManager.Instance != null)
         {
-            spriteRenderer.sprite = towerData.levels[currentLevel].sprite;
-            
-            // Hiệu ứng nâng cấp
-            if (towerData.upgradeEffectPrefab != null)
+            if (CoinManager.Instance.CanAfford(upgradeCost))
             {
-                Instantiate(towerData.upgradeEffectPrefab, transform.position, Quaternion.identity);
+                if (CoinManager.Instance.TrySpendCoins(upgradeCost))
+                {
+                    currentLevel++;
+                    Debug.Log($"✅ Upgraded {towerData.towerName} to level {currentLevel}! Cost: {upgradeCost}");
+                    
+                    // Thay đổi sprite
+                    if (currentLevel < towerData.levels.Length)
+                    {
+                        spriteRenderer.sprite = towerData.levels[currentLevel].sprite;
+                        
+                        // Hiệu ứng nâng cấp
+                        if (towerData.upgradeEffectPrefab != null)
+                        {
+                            Instantiate(towerData.upgradeEffectPrefab, transform.position, Quaternion.identity);
+                        }
+                        
+                        // Âm thanh nâng cấp
+                        if (towerData.upgradeSound != null)
+                        {
+                            AudioSource.PlayClipAtPoint(towerData.upgradeSound, transform.position);
+                        }
+                    }
+                    
+                    // Cập nhật shooting stats
+                    TowerShooter shooter = GetComponent<TowerShooter>();
+                    if (shooter != null)
+                    {
+                        shooter.OnTowerUpgraded();
+                    }
+                    
+                    Debug.Log("New stats - Damage: " + towerData.levels[currentLevel].damage + 
+                              ", Range: " + towerData.levels[currentLevel].range + 
+                              ", Fire Rate: " + towerData.levels[currentLevel].fireRate);
+                }
             }
-            
-            // Âm thanh nâng cấp
-            if (towerData.upgradeSound != null)
+            else
             {
-                AudioSource.PlayClipAtPoint(towerData.upgradeSound, transform.position);
+                int missing = CoinManager.Instance.GetMissingAmount(upgradeCost);
+                Debug.LogWarning($"❌ Cannot upgrade tower! Missing {missing} coins. Required: {upgradeCost}, Available: {CoinManager.Instance.CurrentCoins}");
             }
         }
-        
-        // Cập nhật shooting stats
-        TowerShooter shooter = GetComponent<TowerShooter>();
-        if (shooter != null)
+        else
         {
-            shooter.OnTowerUpgraded();
+            Debug.LogError("CoinManager not found!");
         }
-        
-        Debug.Log("New stats - Damage: " + towerData.levels[currentLevel].damage + 
-                  ", Range: " + towerData.levels[currentLevel].range + 
-                  ", Fire Rate: " + towerData.levels[currentLevel].fireRate);
     }
 
     public void DestroyTower()
     {
         Debug.Log("Destroy tower!");
+        
+        // Trả lại coin khi bán tháp
+        if (towerData != null && currentLevel < towerData.levels.Length)
+        {
+            int sellValue = towerData.levels[currentLevel].sellValue;
+            if (CoinManager.Instance != null)
+            {
+                CoinManager.Instance.AddCoins(sellValue);
+                Debug.Log($"Tower sold for {sellValue} coins!");
+            }
+        }
+        
         CloseMenu(); // Đóng menu trước khi xóa tháp
         Destroy(gameObject);
     }
@@ -182,6 +215,17 @@ public class Tower : MonoBehaviour
     public void DestroyTowerWithoutMenu()
     {
         Debug.Log("Destroy tower!");
+        
+        // Trả lại coin khi bán tháp
+        if (towerData != null && currentLevel < towerData.levels.Length)
+        {
+            int sellValue = towerData.levels[currentLevel].sellValue;
+            if (CoinManager.Instance != null)
+            {
+                CoinManager.Instance.AddCoins(sellValue);
+                Debug.Log($"Tower sold for {sellValue} coins!");
+            }
+        }
         
         // Spawn lại vùng build tại vị trí tháp
         GameObject buildArea = Instantiate(buildAreaPrefab, transform.position, Quaternion.identity);
