@@ -7,10 +7,19 @@ public class TrapBuildArea : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (Time.timeScale == 0) return;
+        // Kiểm tra nếu game đang pause hoặc setting thì không cho mở panel
+        if (Time.timeScale == 0) 
+        {
+            Debug.Log("Game is paused/setting is open, cannot open trap build menu");
+            return;
+        }
+        
         if (currentMenuInstance == null)
         {
-            Canvas targetCanvas = FindObjectOfType<Canvas>();
+            // Tạm dừng camera movement khi mở menu
+            Camera_move.DisableCameraMovement();
+            
+            Canvas targetCanvas = GameObject.FindGameObjectWithTag("UI").GetComponent<Canvas>();
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
             currentMenuInstance = Instantiate(trapBuildMenuPrefab, targetCanvas.transform);
             currentMenuInstance.transform.position = screenPos;
@@ -24,6 +33,9 @@ public class TrapBuildArea : MonoBehaviour
         {
             Destroy(currentMenuInstance);
             currentMenuInstance = null;
+            
+            // Bật lại camera movement khi đóng menu
+            Camera_move.EnableCameraMovement();
         }
     }
 }

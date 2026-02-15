@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Place spot
+  m_Name: duong di va nen co_7
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -758568565559729060, guid: d0d239e99b0e47846ba1f339019bca27, type: 3}
+  m_Sprite: {fileID: 804790410, guid: f1e25b75b01d2394fb6a1dbcb97e69df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

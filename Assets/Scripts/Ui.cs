@@ -93,10 +93,17 @@ public class Ui : MonoBehaviour
             }
         }
         
+        // Đóng TrapBuildMenu (panel trap)
+        if (TrapBuildMenu.currentOpenMenu != null)
+        {
+            Debug.Log("Closing TrapBuildMenu");
+            TrapBuildMenu.currentOpenMenu.ClosePanelOnly();
+        }
+        
         // Bật lại camera movement
         Camera_move.EnableCameraMovement();
         
-        Debug.Log("All tower panels closed!");
+        Debug.Log("All tower and trap panels closed!");
     }
 
     //================= BUTTON FUNCTION =====================
